@@ -5,6 +5,9 @@ const router = express.Router();
 
 router.get('/food', handleGetAll);
 router.get('/food/:category', handleGeAllbyCat);
+router.get("/", (req, res) => {
+  res.status(200).send("home");
+});
 
 async function handleGetAll(req, res) {
   let allRecords = await food.get();
@@ -13,7 +16,7 @@ async function handleGetAll(req, res) {
 
 async function handleGeAllbyCat(req, res) {
   const category = req.params.category;
-  let allRecord = await food.get(category);
+  let allRecord = await food.getByCat(category);
   res.status(200).json(allRecord);
 }
 

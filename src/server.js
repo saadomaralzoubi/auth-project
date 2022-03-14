@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(authrouter);
 app.use(nonAuthRoute);
-// app.use(adminRoute);
+app.use(adminRoute);
 
 app.use("*", notFoundHandler);
 app.use(errorHandler);

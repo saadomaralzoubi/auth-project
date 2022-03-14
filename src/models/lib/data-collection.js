@@ -23,12 +23,15 @@ class DataCollection {
     }
 
     update(id, data) {
-        return this.model.findOne({ where: { id } })
+        return this.model.findOne({ where: { id : id} })
             .then(record => record.update(data));
     }
 
     delete(id) {
-        return this.model.destroy({ where: { id } });
+        return this.model.destroy({ where: { id : id } });
+    }
+    getByCat(category) {
+        return this.model.findAll({ where: { category: category}})
     }
 
 }
