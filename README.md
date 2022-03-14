@@ -18,12 +18,12 @@ the user has the ability to vrate account.
 
 ## linkes
 
-https://resturant-project.herokuapp.com/
+[heroku](https://resturant-project-auth.herokuapp.com/)
 
 https://github.com/saadomaralzoubi/auth-project/actions
 
 ### note :
 
 this project done by :
-1-Mohammed Awadallah
-2-Saad Aalzubi
+- Mohammed Awadallah
+- Saad Aalzubi

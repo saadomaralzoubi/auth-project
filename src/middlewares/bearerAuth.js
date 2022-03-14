@@ -1,7 +1,8 @@
 
 'use strict';
-
+require('dotenv').config();
 const { users } = require('../models/index')
+const SECRET = process.env.SECRET || "FIFA"
 
 module.exports = async (req, res, next) => {
 
