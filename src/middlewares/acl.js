@@ -1,15 +1,20 @@
-"use strict";
-function acl(action) {
-  return (req, res, next) => {
-    try {
-      if (req.User.actions.includes(action)) {
-        next();
-      } else {
-        next("UNAUTHORIZED");
-      }
-    } catch (error) {
-      next("error");
+'use strict';
+
+module.exports = (capability) => {
+
+    return (req, res, next) => {
+
+        try {
+            if (req.user.capabilities.includes(capability)) {
+                next();
+            }
+            else {
+                next('Access Denied');
+            }
+        } catch (e) {
+            next('Invalid Login');
+        }
+
     }
-  };
+
 }
-module.exports = acl;

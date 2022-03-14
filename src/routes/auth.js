@@ -1,37 +1,30 @@
-const express = require("express");
+'use strict';
 
-const bcrypt = require("bcrypt");
-
-const basicAuth = require("../middlewares/basicAuth");
-const bearerAuth = require("../middlewares/bearerAuth");
-
-const { Users } = require("../models/index.js");
+const express = require('express');
 const routers = express.Router();
+const { users } = require('../models/index');
+const basicAuth = require('../middlewares/basicAuth.js')
+const bearerAuth = require('../middlewares/bearerAuth.js')
+const cabablitesMid = require('../middlewares/acl.js')
 
-routers.post("/signup", signupFunc);
-routers.post("/signin", basicAuth, (req, res) => {
-  res.status(200).json(req.User);
-});
-routers.get("/users", bearerAuth, (req, res) => {
-  res.status(200).json(req.value);
-});
-
-routers.get("/", (req, res) => {
-  res.send("home");
-});
-
-async function signupFunc(req, res) {
-  let { username, password } = req.body;
+routers.post('/signup', async (req, res, next) => {
   try {
-    let hashedPassword = await bcrypt.hash(password, 5);
-    const newUser = await Users.create({
-      username: username,
-      password: hashedPassword,
-    });
-    res.status(201).json(newUser);
-  } catch (error) {
-    console.log(error);
+    let userRecord = await users.create(req.body);
+    const output = {
+      user: userRecord,
+      token: userRecord.token
+    };
+    res.status(201).json(output);
+  } catch (e) {
+    next(e.message)
   }
-}
+});
+routers.post('/signin', basicAuth, (req, res, next) => {
+  const user = {
+    user: req.user,
+    token: req.user.token
+  };
+  res.status(200).json(user);
+});
 
 module.exports = routers;

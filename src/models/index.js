@@ -18,7 +18,7 @@ const sequelize = new Sequelize(DATABASE_URL, DATABASE_CONFIG);
 const food = foodModel(sequelize, DataTypes);
 module.exports = {
   db: sequelize,
-  user: userModel(sequelize, DataTypes),
+  users: userModel(sequelize, DataTypes),
   food: new Collection(food)
 
 };
