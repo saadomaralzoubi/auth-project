@@ -28,14 +28,14 @@ routers.get('/users', bearerAuth, aclMid('delete'), async (req, res, next) => {
   let updated = req.body;
   await users.update(updated , { where: { id : id } });
   let updatedUser = await users.findOne({ where: { id : id } })
-    res.json(updatedUser);
+    res.status(201).json(updatedUser);
   })
 
 
   routers.post('/food' , bearerAuth , aclMid('create'), async (req, res, next) =>{
    let createdFood = req.body;
     await food.create(req.body);
-    res.status(200).json(createdFood);
+    res.status(201).json(createdFood);
 
   })
 
@@ -54,7 +54,7 @@ routers.get('/users', bearerAuth, aclMid('delete'), async (req, res, next) => {
         let update = req.body
         let output = await food.update(id , update)
 
-        res.status(200).json(output)
+        res.status(201).json(output)
 
 
     })
