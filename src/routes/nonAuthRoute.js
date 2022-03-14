@@ -1,6 +1,6 @@
 'use strict';
 const express = require('express');
-const food = require('../models/index');
+const {food} = require('../models/index');
 const router = express.Router();
 
 router.get('/food', handleGetAll);

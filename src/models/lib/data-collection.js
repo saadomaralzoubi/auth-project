@@ -6,16 +6,16 @@ class DataCollection {
         this.model = model;
     }
 
-    get(param) {
-        if (typeof param == 'integer') {
+    get(id) {
+        if (id) {
             return this.model.findOne({ where: { id: id } });
         }
-        if (typeof param != 'integer' && typeof param != 'string' ) {
+        else {
             return this.model.findAll({});
         }
-        if (typeof param == 'string') {
-            return this.model.findAll({WHERE: { category: category}});
-        }
+        // if (typeof param == 'string') {
+        //     return this.model.findAll({WHERE: { category: category}});
+        // }
     }
 
     create(record) {
