@@ -18,7 +18,7 @@ the user has the ability to vrate account.
 
 ## linkes
 
-https://resturant-project.herokuapp.com/
+https://resturant-project-auth.herokuapp.com/
 
 https://github.com/saadomaralzoubi/auth-project/actions
 
