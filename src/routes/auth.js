@@ -27,4 +27,10 @@ routers.post('/signin', basicAuth, (req, res, next) => {
   res.status(200).json(user);
 });
 
+routers.get('/users', bearerAuth, cabablitesMid('delete'), async (req, res, next) => {
+  const userRecords = await users.findAll({});
+  const usersList = userRecords.map(user => user.username);
+  res.status(200).json(usersList);
+});
+
 module.exports = routers;
